@@ -6,7 +6,7 @@ import datetime
 def get_current_weather(city_name):
     # api for current weater
     weather_url = (f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&'
-                   f'appid=548a48090e1be38d7e828325f094465b&units=metric')
+                   f'appid={api_key}')
 
     r = requests.get(weather_url)
     # error list at https://openweathermap.org/api/one-call-3#popularerrors
