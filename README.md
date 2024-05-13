@@ -32,7 +32,7 @@ pip install datetime
 ### Usage
 
 1. Obtain an API key from OpenWeatherMap (https://openweathermap.org/).
-2. Replace api_key in rgb(*current_weather.py*) and *forecast_weather.py* with your actual API key.
+2. Replace api_key in *current_weather.py* and *forecast_weather.py* with your actual API key.
 3. Run the script:
 ```shell
 python weather_app.py
