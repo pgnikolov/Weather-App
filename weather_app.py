@@ -15,12 +15,35 @@ def get_favourite_cities():
 
 def remove_favourite_city(city_name):
     favourite_cities = get_favourite_cities()
-    # create new list with all cities which are different from the one we want to remove
-    filtered_cities = [city.strip() for city in favourite_cities if city.strip().lower() != city_name.lower()]
-    with open("favourite_cities.txt", "w") as f:
-        # from new list we put the cities back to the fav list order
-        for city in filtered_cities:
-            f.write(city + "\n")
+    city_index = int(city_name) - 1
+    if 0 <= city_index < len(favourite_cities):
+        city_to_remove = favourite_cities.pop(city_index).strip()
+        with open("favourite_cities.txt", "w") as f:
+            f.writelines(city for city in favourite_cities)
+        print(f"City '{city_to_remove}' removed from favorites.")
+    else:
+        print("Invalid choice.")
+
+
+def get_forecast_5days(city_name):
+    # api for current weater
+    forecast_url = (f'https://api.openweathermap.org/data/2.5/forecast?q={city_name}&'
+                    f'appid=548a48090e1be38d7e828325f094465b&units=metric')
+
+    r = requests.get(forecast_url)
+    # error list at https://openweathermap.org/api/one-call-3#popularerrors
+
+    if r.status_code == 404:
+        print("City not found")
+        return
+    if r.status_code == 200:
+        return json.loads(r.content)
+    if r.status_code == 429:
+        print("Error 429 - Too Many Requests.")
+        return
+    if r.status_code == 401:
+        print("Please check your API and key")
+        return
 
 
 def get_current_weather(city_name):
@@ -94,27 +117,6 @@ def print_weather(city_name):
         return
 
 
-def get_forecast_5days(city_name):
-    # api for current weater
-    forecast_url = (f'https://api.openweathermap.org/data/2.5/forecast?q={city_name}&'
-                    f'appid=548a48090e1be38d7e828325f094465b&units=metric')
-
-    r = requests.get(forecast_url)
-    # error list at https://openweathermap.org/api/one-call-3#popularerrors
-
-    if r.status_code == 404:
-        print("City not found")
-        return
-    if r.status_code == 200:
-        return json.loads(r.content)
-    if r.status_code == 429:
-        print("Error 429 - Too Many Requests.")
-        return
-    if r.status_code == 401:
-        print("Please check your API and key")
-        return
-
-
 def print_forecast(city_name):
     forecast_data = get_forecast_5days(city_name)
     # new diictionary to store daily forecasts
@@ -144,12 +146,8 @@ def print_forecast(city_name):
 
 
 def weather_app():
-    # load the list with saved fav cities
-    favourite_cities = get_favourite_cities()
-
     while True:
-        # user options
-        print("1. View Favourite Cities")
+        print("\n1. View Favourite Cities")
         print("2. Add Favourite City")
         print("3. Remove Favorite City")
         print("4. Check Weather")
@@ -159,6 +157,7 @@ def weather_app():
         user_choice = input("Enter the number of your choice: \n")
 
         if user_choice == "1":
+            favourite_cities = get_favourite_cities()
             if not favourite_cities:
                 print("No favourite cities found.")
             else:
@@ -172,57 +171,41 @@ def weather_app():
             print(f"City '{city}' added to favorites.")
 
         elif user_choice == "3":
+            favourite_cities = get_favourite_cities()
             if not favourite_cities:
                 print("No favorite cities to remove.")
             else:
                 print("Select a favorite city to remove by number:")
-                # print the cities with index + 1 infront
                 for i, city in enumerate(favourite_cities):
                     print(f"{i + 1}. {city.strip()}")
-                choice = input("Enter the number of the city you want to remove: ")
-                try:
-                    # city index is list number - 1
-                    city_to_remove = favourite_cities[int(choice) - 1].strip()
-                    remove_favourite_city(city_to_remove)
-                    print(f"City '{city_to_remove}' removed from favorites.")
-                    # handle in case of user input mistake
-                except (ValueError, IndexError):
-                    print("Invalid choice.")
-                    continue
+                city_to_remove = input("Enter the number of the city you want to remove: ")
+                remove_favourite_city(city_to_remove)
 
+        # user can choose from cities in fav list or other he can write
         elif user_choice == "4" or user_choice == "5":
-            # user can choose from cities in fav list or other he can write
             city = input("Enter city name (or 'fav' for favorites): ")
             if city.lower() == "fav":
+                favourite_cities = get_favourite_cities()
                 if not favourite_cities:
                     print("No favorite cities found yet.")
                 else:
                     print("Select a favorite city by number:")
-                    # the same procedure as removing
                     for i, city in enumerate(favourite_cities):
                         print(f"{i + 1}. {city.strip()}")
                     choice = input("Enter choice: ")
-                    # for option 4
-                    if user_choice == "4":
-                        try:
-                            city = favourite_cities[int(choice) - 1].strip()
-                        except (ValueError, IndexError):
-                            print("Invalid choice.")
-                            continue
-                        print_weather(city)
-                    # for optionn 5
-                    if user_choice == "5":
-                        try:
-                            city = favourite_cities[int(choice) - 1].strip()
-                        except (ValueError, IndexError):
-                            print("Invalid choice.")
-                        print_forecast(city)
+                    if 1 <= int(choice) <= len(favourite_cities):
+                        city = favourite_cities[int(choice) - 1].strip()
+                        if user_choice == "4":
+                            print_weather(city)
+                        elif user_choice == "5":
+                            print_forecast(city)
+                    else:
+                        print("Invalid choice.")
             else:
                 if user_choice == "4":
                     print_weather(city)
                 elif user_choice == "5":
                     print_forecast(city)
-
         # EXIT OPTION
         elif user_choice == "6":
             print("Exit by user request")
