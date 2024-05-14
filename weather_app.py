@@ -28,7 +28,7 @@ def remove_favourite_city(city_name):
 def get_forecast_5days(city_name):
     # api for current weater
     forecast_url = (f'https://api.openweathermap.org/data/2.5/forecast?q={city_name}&'
-                    f'appid=548a48090e1be38d7e828325f094465b&units=metric')
+                    f'appid={api_key}=metric')
 
     r = requests.get(forecast_url)
     # error list at https://openweathermap.org/api/one-call-3#popularerrors
@@ -49,7 +49,7 @@ def get_forecast_5days(city_name):
 def get_current_weather(city_name):
     # api for current weater
     weather_url = (f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&'
-                   f'appid=548a48090e1be38d7e828325f094465b&units=metric')
+                   f'appid={api_key}&units=metric')
 
     r = requests.get(weather_url)
     # error list at https://openweathermap.org/api/one-call-3#popularerrors
