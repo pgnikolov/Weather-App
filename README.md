@@ -38,17 +38,97 @@ pip install datetime
 python weather_app.py
 ```
 4. The application will display a menu with options:
-
-![choice](https://github.com/pgnikolov/Weather-App/assets/151896883/df7d8252-dbcc-4c68-82cb-2e1f8d19691c)
-
+```
+1. View Favourite Cities
+2. Add Favourite City
+3. Remove Favorite City
+4. Check Weather
+5. Check 5-Day Forecast
+6. Exit
+```
 5. Select the desired option by entering the corresponding number.
 
-6. Output of real time weather conditions:
+* If your choice is "View Favourite Cities".
+```
+Enter the number of your choice: 
+1
+Your Favorite Cities:
+1. Sofia
+2. New York
+3. London
+4. Manchester
+5. Paris
+6. Burgas
+```
+* If your choice is "Add Favourite City" you will need to write the name of city you want to add.
+```
+Enter city name to add as favorite: Madrid
+City 'Madrid' added to favorites.
+```
+* The option "Remove Favourite City" will ask you to write the number of the city in list.
+```
+1. Sofia
+2. New York
+3. London
+4. Manchester
+5. Paris
+6. Burgas
+7. Madrid
+Enter the number of the city you want to remove: 7
+City 'Madrid' removed from favorites.
+```
+* In options "Check Weather" and "Check 5-Day Forecast" you can choose whether to check the forecast for a city from the list of favorites by typing "fav" or to enter the name of another.
+```
+Enter city name (or 'fav' for favorites): fav
+Select a favorite city by number:
+1. Sofia
+2. New York
+3. London
+4. Manchester
+5. Paris
+6. Burgas
+```
+* "Check Weather" gives the real time weather conditions.
+```
+Current Weather at New york: 
+Clear sky 
+Current Temperature: 21.07°C 
+Temperature feels like: 20.88°C 
+Max Temperature: 23.6°C 
+Min Temperature: 18.09°C 
+Today the sunrise is at 11:39:32 
+Today the sunset is at 02:05:23 
+Humidity: 63% 
+Pressure: 1017hPa 
+Visibility: 10.00Km. 
+Wind: 
+	Speed: 4.97Km/h 
+	Direction: 180° SE
+```
+* Output of five-day forecast gives basic conditions and average temperature.
+```
+- 2024-05-14:
+  Descriptions: scattered clouds, light rain
+  Average Temp: 20.5°C
 
-![current](https://github.com/pgnikolov/Weather-App/assets/151896883/ef0e2a21-3e45-4649-906b-07f470e5df0c)
+- 2024-05-15:
+  Descriptions: overcast clouds, moderate rain, light rain
+  Average Temp: 16.1°C
 
-7. Output of five-day forecast:
+- 2024-05-16:
+  Descriptions: moderate rain, light rain
+  Average Temp: 14.8°C
 
-![5days_forecast](https://github.com/pgnikolov/Weather-App/assets/151896883/31c6f285-e872-47b9-83a1-d8c714ff04a3)
+- 2024-05-17:
+  Descriptions: overcast clouds, scattered clouds, broken clouds
+  Average Temp: 17.1°C
 
+- 2024-05-18:
+  Descriptions: overcast clouds, broken clouds
+  Average Temp: 17.2°C
+
+- 2024-05-19:
+  Descriptions: overcast clouds
+  Average Temp: 14.3°C
+```
 
