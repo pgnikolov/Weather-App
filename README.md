@@ -1,12 +1,12 @@
-# Weather Forecast
+# Weather Forecast 🌦️
 
 <img src="https://github.com/pgnikolov/Weather-App/assets/151896883/c54946a9-86ed-4bf4-97fa-741522f608e9" width="750" height="400"/>
 
-# Get Current & 5-Day Forecast with OpenWeatherMap API
+## Get Current & 5-Day Forecast with  <img src="https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png" width="92" height="40"/>  API
 
 This is a weather application that retrieves current weather conditions and a 5-day forecast for any city in the world. It utilizes the OpenWeatherMap API to fetch the data.
 
-### Features
+### Features 🧰
 
 - Enter any city in the world and get the current weather conditions
 - The app uses the datetime library to determine the timezone of the location entered by the user
@@ -14,13 +14,13 @@ This is a weather application that retrieves current weather conditions and a 5-
 - The app uses json library API response in in the form of json
 - The app gives you the opportunity to modify the list with favourite cities.
 
-### Requirements
+### Requirements 🗄️
 - Python 3.x
 - Requests library
 - json
 - datetime
 
-### Installation
+### Installation ⚙️
 
 1. Clone this repository
 ```shell
@@ -135,3 +135,11 @@ Wind:
   Average Temp: 14.3°C
 ```
 
+### Contributing 🤝
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+### License 📝
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+### Contact 📫
+For any questions or feedback, please contact [![Gmail](https://img.shields.io/badge/-Gmail-c14438?style=flat&logo=Gmail&logoColor=white)](mailto:pgnikolov@gmail.com)
