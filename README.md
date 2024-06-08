@@ -1,4 +1,7 @@
-# Weather App 
+# Weather Forecast
+
+<img src="https://github.com/pgnikolov/Weather-App/assets/151896883/c54946a9-86ed-4bf4-97fa-741522f608e9" width="750" height="400"/>
+
 # Get Current & 5-Day Forecast with OpenWeatherMap API
 
 This is a weather application that retrieves current weather conditions and a 5-day forecast for any city in the world. It utilizes the OpenWeatherMap API to fetch the data.
